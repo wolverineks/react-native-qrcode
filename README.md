@@ -75,6 +75,34 @@ prop      | type                 | default value
 
 <img src='qrcode.png' height = '256' width = '256'/>
 
+## Testing
+
+Testing a component using something like [Jest snapshots](https://jestjs.io/docs/en/tutorial-react-native.html) requires mocking some native code 
+```
+//testSetup.js
+
+jest.mock('react-native-qrcode', () => 'QRCode')
+```
+
+```
+// MyQRCodeComponent.test.js
+
+import React from 'react'
+import ShallowRenderer from 'react-test-renderer/shallow'
+
+import QRCode from './MyQRCodeComponent.js'
+
+describe('QRCode', () => {
+  it('should render', () => {
+    const renderer = new ShallowRenderer()
+    const actual = renderer.render(<QRCode />)
+
+    expect(actual).toMatchSnapshot()
+  })
+})
+
+```
+
 # Licenses
 
 All source code is licensed under the [MIT License](https://github.com/cssivision/react-native-qrcode/blob/master/LICENSE).
