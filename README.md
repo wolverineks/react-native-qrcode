@@ -75,9 +75,17 @@ prop      | type                 | default value
 
 <img src='qrcode.png' height = '256' width = '256'/>
 
-## Testing
+## Snapshot Testing
 
-Testing a component using something like [Jest snapshots](https://jestjs.io/docs/en/tutorial-react-native.html) requires mocking some native code 
+If you use [Jest snapshots](https://jestjs.io/docs/en/tutorial-react-native.html) to test your components, you may have run into 
+
+```
+  ● Test suite failed to run
+
+    TypeError: Cannot read property 'decelerationRate' of undefined
+```
+
+`react-native-qrcode` relies on some native code. To skip using the native code and continue testing yuor components, mock `react-native-qrcode`.
 ```
 //testSetup.js
 
@@ -90,12 +98,12 @@ jest.mock('react-native-qrcode', () => 'QRCode')
 import React from 'react'
 import ShallowRenderer from 'react-test-renderer/shallow'
 
-import QRCode from './MyQRCodeComponent.js'
+import MyQRCodeComponent from './MyQRCodeComponent.js'
 
 describe('QRCode', () => {
   it('should render', () => {
     const renderer = new ShallowRenderer()
-    const actual = renderer.render(<QRCode />)
+    const actual = renderer.render(<MyQRCodeComponent />)
 
     expect(actual).toMatchSnapshot()
   })
