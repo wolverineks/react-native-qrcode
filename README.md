@@ -79,20 +79,21 @@ prop      | type                 | default value
 
 If you use [Jest snapshots](https://jestjs.io/docs/en/tutorial-react-native.html) to test your components, you may have run into 
 
-```
+```javascript
   ● Test suite failed to run
 
     TypeError: Cannot read property 'decelerationRate' of undefined
 ```
 
 `react-native-qrcode` relies on some native code. To skip using the native code and continue testing yuor components, mock `react-native-qrcode`.
-```
+
+```javascript
 //testSetup.js
 
 jest.mock('react-native-qrcode', () => 'QRCode')
 ```
 
-```
+```javascript
 // MyQRCodeComponent.test.js
 
 import React from 'react'
