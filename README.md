@@ -85,7 +85,7 @@ If you use [Jest snapshots](https://jestjs.io/docs/en/tutorial-react-native.html
     TypeError: Cannot read property 'decelerationRate' of undefined
 ```
 
-`react-native-qrcode` relies on some native code. To skip using the native code and continue testing yuor components, mock `react-native-qrcode`.
+`react-native-qrcode` relies on some native code. To skip using the native code and continue testing your components, mock `react-native-qrcode`.
 
 ```javascript
 //testSetup.js
